@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rajan.seatingplan.MainActivity">
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="291dp"
+        android:layout_height="40dp"
+        android:text="@string/hello"
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/tvPath"
+        android:layout_width="152dp"
+        android:layout_height="110dp"
+        android:text="Path: "
+        tools:layout_editor_absoluteY="143dp"
+        tools:layout_editor_absoluteX="93dp" />
+
+    <Button
+        android:id="@+id/bBrowse"
+        android:layout_width="143dp"
+        android:layout_height="68dp"
+        android:text="Browse"
+        tools:layout_editor_absoluteY="70dp"
+        tools:layout_editor_absoluteX="16dp">
+    </Button>
+
+    <Button
+        android:id="@+id/bSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        tools:layout_editor_absoluteY="70dp"
+        tools:layout_editor_absoluteX="245dp" />
+
+    <ImageView
+        android:id="@+id/ivPic"
+        android:layout_width="203dp"
+        android:layout_height="182dp"
+        tools:layout_editor_absoluteY="294dp"
+        tools:layout_editor_absoluteX="83dp">
+    </ImageView>
+</android.support.constraint.ConstraintLayout>
