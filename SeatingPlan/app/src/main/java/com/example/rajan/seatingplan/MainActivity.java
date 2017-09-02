@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,10 +32,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int SELECT_PICTURE = 1;
-
-    private String selectedImagePath;
-    private ImageView img;
 
     private EditText eText;
     private EditText eText1;
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("36");
         System.out.println("51");
         Button send = (Button) findViewById(R.id.bSend);
-
         send.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -98,39 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                new DownloadImageTask2().execute();
+
+                Intent myIntent = new Intent(MainActivity.this, PlanActivity.class);
+                startActivity(myIntent);
             }
 
-            class DownloadImageTask2 extends AsyncTask<String,String,String> {
-
-                protected String doInBackground(String... urls) {
-                    Socket sock;
-                    try {
-                        sock = new Socket("192.168.0.100", 8000);
-                        System.out.println("Connecting...");
-                        DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
-                        dOut.writeByte(2);
-                        DataInputStream dIn = new DataInputStream(sock.getInputStream());
-                        byte messageType = dIn.readByte();
-
-                        System.out.println("Message A: " + dIn.readUTF());
-
-//                        sock.close();
-                    } catch (UnknownHostException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-                    return "done";
-                }
-
-                protected void onPostExecute() {
-
-                }
-            }
 
         });
 
