@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +25,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,36 +36,29 @@ public class MainActivity extends AppCompatActivity {
     private String selectedImagePath;
     private ImageView img;
 
+    private EditText eText;
+    private EditText eText1;
+    public String roll="5";
+    public String seat;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        eText = (EditText) findViewById(R.id.edittext);
+        eText1 = (EditText) findViewById(R.id.edittext1);
         System.out.println("34");
-        img = (ImageView) findViewById(R.id.ivPic);
         System.out.println("36");
-        ((Button) findViewById(R.id.bBrowse))
-                .setOnClickListener(new OnClickListener() {
-                    public void onClick(View arg0) {
-                        System.out.println("40");
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(
-                                Intent.createChooser(intent, "Select Picture"),
-                                SELECT_PICTURE);
-                        System.out.println("47");
-                    }
-                });
-        ;
         System.out.println("51");
         Button send = (Button) findViewById(R.id.bSend);
-        final TextView status = (TextView) findViewById(R.id.tvStatus);
 
         send.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+                roll = eText.getText().toString();
+                seat = eText1.getText().toString();
                 new DownloadImageTask().execute();
 
             }
@@ -78,20 +73,9 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("Connecting...");
                         DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
                         dOut.writeByte(1);
-                        dOut.writeUTF("This is the first type of message.");
+                        dOut.writeUTF(roll);
                         dOut.flush(); // Send off the data
                         dOut.close();
-                        // sendfile
-//                        File myFile = new File (selectedImagePath);
-//                        byte [] mybytearray  = new byte [(int)myFile.length()];
-//                        FileInputStream fis = new FileInputStream(myFile);
-//                        BufferedInputStream bis = new BufferedInputStream(fis);
-//                        bis.read(mybytearray,0,mybytearray.length);
-//                        OutputStream os = sock.getOutputStream();
-//                        System.out.println("Sending...");
-//                        os.write(mybytearray,0,mybytearray.length);
-//                        os.flush();
-
                         sock.close();
                     } catch (UnknownHostException e) {
                         // TODO Auto-generated catch block
@@ -109,26 +93,47 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE) {
-                Uri selectedImageUri = data.getData();
-                selectedImagePath = getPath(selectedImageUri);
-                TextView path = (TextView) findViewById(R.id.tvPath);
-                path.setText("Image Path : " + selectedImagePath);
-                img.setImageURI(selectedImageUri);
-                System.out.println(selectedImagePath);
-            }
-        }
-    }
 
-    public String getPath(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
+        ((Button) findViewById(R.id.showbtn)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                new DownloadImageTask2().execute();
+            }
+
+            class DownloadImageTask2 extends AsyncTask<String,String,String> {
+
+                protected String doInBackground(String... urls) {
+                    Socket sock;
+                    try {
+                        sock = new Socket("192.168.0.100", 8000);
+                        System.out.println("Connecting...");
+                        DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
+                        dOut.writeByte(2);
+                        DataInputStream dIn = new DataInputStream(sock.getInputStream());
+                        byte messageType = dIn.readByte();
+
+                        System.out.println("Message A: " + dIn.readUTF());
+
+//                        sock.close();
+                    } catch (UnknownHostException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    return "done";
+                }
+
+                protected void onPostExecute() {
+
+                }
+            }
+
+        });
+
+        }
+
 }

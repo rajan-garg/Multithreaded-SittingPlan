@@ -6,44 +6,68 @@
     android:layout_height="match_parent"
     tools:context="com.example.rajan.seatingplan.MainActivity">
 
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="291dp"
-        android:layout_height="40dp"
-        android:text="@string/hello"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <TextView
-        android:id="@+id/tvPath"
-        android:layout_width="152dp"
-        android:layout_height="110dp"
-        android:text="Path: "
-        tools:layout_editor_absoluteY="143dp"
-        tools:layout_editor_absoluteX="93dp" />
-
-    <Button
-        android:id="@+id/bBrowse"
-        android:layout_width="143dp"
-        android:layout_height="68dp"
-        android:text="Browse"
-        tools:layout_editor_absoluteY="70dp"
-        tools:layout_editor_absoluteX="16dp">
-    </Button>
-
     <Button
         android:id="@+id/bSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send"
-        tools:layout_editor_absoluteY="70dp"
-        tools:layout_editor_absoluteX="245dp" />
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="51dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="51dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/edittext"
+        android:layout_marginBottom="2dp" />
 
-    <ImageView
-        android:id="@+id/ivPic"
-        android:layout_width="203dp"
-        android:layout_height="182dp"
-        tools:layout_editor_absoluteY="294dp"
-        tools:layout_editor_absoluteX="83dp">
-    </ImageView>
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_width="277dp"
+        android:layout_height="86dp"
+        android:layout_alignLeft="@+id/showbtn"
+        android:ems="10"
+        android:inputType="text"
+        android:text="enter_roll"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="31dp"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext1"
+        android:layout_marginTop="75dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="31dp" />
+
+    <EditText
+        android:id="@+id/edittext1"
+        android:layout_width="200dp"
+        android:layout_height="46dp"
+        android:layout_alignLeft="@+id/showbtn"
+        android:ems="10"
+        android:inputType="text"
+        android:text="enter_seat"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="273dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="31dp" />
+
+    <Button
+        android:id="@+id/showbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show seats"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="62dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="71dp"
+        app:layout_constraintTop_toBottomOf="@+id/edittext1"
+        android:layout_marginBottom="73dp"
+        android:layout_marginRight="62dp" />
+
 </android.support.constraint.ConstraintLayout>
