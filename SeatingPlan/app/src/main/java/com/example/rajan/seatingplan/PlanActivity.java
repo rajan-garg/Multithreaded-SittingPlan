@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -33,7 +34,13 @@ public class PlanActivity extends AppCompatActivity {
                     DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
                     dOut.writeByte(2);
                     DataInputStream dIn = new DataInputStream(sock.getInputStream());
-                    byte messageType = dIn.readByte();
+                    FileOutputStream fout = new FileOutputStream("/storage/sdcard0/100.jpg");
+                    int i;
+                    while ( (i = dIn.read()) > -1) {
+                        fout.write(i);
+                    }
+                    fout.flush();
+                    fout.close();
                     da = dIn.readUTF();
                     System.out.println("Message A: " + da);
                     System.out.println(da);
