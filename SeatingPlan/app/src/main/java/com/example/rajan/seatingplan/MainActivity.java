@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText eText;
     private EditText eText1;
-    public String roll="5";
+    public String roll;
     public String seat;
 
     @Override
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("Connecting...");
                         DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
                         dOut.writeByte(1);
-                        dOut.writeUTF(roll);
+                        dOut.writeUTF(roll +" " + seat + "\n");
                         dOut.flush(); // Send off the data
                         dOut.close();
                         sock.close();
