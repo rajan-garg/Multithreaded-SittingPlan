@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 protected String doInBackground(String... urls) {
                     Socket sock;
                     try {
-                        sock = new Socket("192.168.0.100", 8000);
+                        sock = new Socket("192.168.0.103", 8000);
                         System.out.println("Connecting...");
                         DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
                         dOut.writeByte(1);
