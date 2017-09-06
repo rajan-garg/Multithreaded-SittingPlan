@@ -29,7 +29,7 @@ public class PlanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
 
-        ImageView img = (ImageView) findViewById(R.id.imageView2);
+        final ImageView img = (ImageView) findViewById(R.id.imageView2);
 
         class DownloadImageTask2 extends AsyncTask<String,String,String> {
 
@@ -82,17 +82,17 @@ public class PlanActivity extends AppCompatActivity {
             }
 
             protected void onPostExecute() {
+                for (Map.Entry m : map.entrySet()) {
+                    String path = "/storage/sdcard0/" + m.getKey() + ".jpg";
+                    Bitmap bmp = BitmapFactory.decodeFile(path);
+                    img.setImageBitmap(bmp);
+                }
 
             }
         }
     while(true) {
         new DownloadImageTask2().execute();
 
-        for (Map.Entry m : map.entrySet()) {
-            String path = "/storage/sdcard0/" + m.getKey() + ".jpg";
-            Bitmap bmp = BitmapFactory.decodeFile(path);
-            img.setImageBitmap(bmp);
-        }
     }
      }
 
