@@ -12,7 +12,7 @@ import java.util.Map;
 public class PlanActivity extends AppCompatActivity {
 
     String da;
-    Map<String,String> map=new HashMap<String,String>();
+    Map<String, String> map=new HashMap<String,String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

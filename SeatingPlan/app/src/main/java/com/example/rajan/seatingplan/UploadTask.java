@@ -22,7 +22,7 @@ public class UploadTask extends AsyncTask<Object, Object, Boolean> {
     protected Boolean doInBackground(Object... urls) {
         Socket sock;
         try {
-            sock = new Socket("192.168.0.106", 8000);
+            sock = new Socket(Config.IP_ADDR, 8000);
             DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
             dOut.writeByte(1);
             dOut.writeUTF(roll +" " + seat + "\n");

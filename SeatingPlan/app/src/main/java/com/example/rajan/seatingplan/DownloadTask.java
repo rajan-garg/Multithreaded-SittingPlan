@@ -28,6 +28,13 @@ public class DownloadTask extends AsyncTask<Object, Object, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
+        for(Map.Entry m:map.entrySet()) {
+            System.out.println(m.getKey()+" "+m.getValue());
+        }
+//        map.clear();
+//        DownloadTask downloadTask = new DownloadTask(map);
+//        downloadTask.execute();
+
         Log.e("DownloadTask", "onPostExecute()");
     }
 
@@ -36,19 +43,20 @@ public class DownloadTask extends AsyncTask<Object, Object, Boolean> {
         Log.e("DownloadTask", "doInBackground()");
         Socket sock;
         try {
-            sock = new Socket("192.168.0.106", 8000);
+            sock = new Socket(Config.IP_ADDR, 8000);
             DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
             dOut.writeByte(2);
             DataInputStream dIn = new DataInputStream(sock.getInputStream());
             String str;
-            while((str=dIn.readUTF()) != null)
+            while(!((str=dIn.readUTF()).equals("")))
             {
+                Log.e("frrf",str);
                 StringTokenizer st = new StringTokenizer(str," ");
                 map.put(st.nextToken(),st.nextToken());
             }
-
+            Log.e("dsad0","file read done");
             for(Map.Entry m:map.entrySet()){
-                // System.out.println(m.getKey()+" "+m.getValue());
+                Log.e("DT:DIB", m.getKey()+" "+m.getValue());
                 String path = "/storage/sdcard0/" + m.getKey() + ".jpg";
                 File imageFile = new  File(path);
                 if(!imageFile.exists())
