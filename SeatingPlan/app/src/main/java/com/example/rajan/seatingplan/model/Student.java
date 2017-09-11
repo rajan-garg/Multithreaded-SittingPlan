@@ -1,4 +1,4 @@
-package com.example.rajan.seatingplan;
+package com.example.rajan.seatingplan.model;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;

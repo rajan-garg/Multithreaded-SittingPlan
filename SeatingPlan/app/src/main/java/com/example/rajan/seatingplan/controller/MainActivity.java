@@ -1,4 +1,4 @@
-package com.example.rajan.seatingplan;
+package com.example.rajan.seatingplan.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.rajan.seatingplan.R;
+import com.example.rajan.seatingplan.service.UploadTask;
 
+public class MainActivity extends AppCompatActivity {
 
     private EditText roll_et;
     private EditText seat_et;

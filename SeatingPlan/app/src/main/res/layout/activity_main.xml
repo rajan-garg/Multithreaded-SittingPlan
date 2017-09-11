@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.rajan.seatingplan.MainActivity">
+    tools:context="com.example.rajan.seatingplan.controller.MainActivity">
 
     <Button
         android:id="@+id/bSend"
@@ -26,7 +26,7 @@
         android:layout_alignLeft="@+id/showbtn"
         android:ems="10"
         android:inputType="text"
-        android:text="enter_roll"
+        android:text="1"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintBottom_creator="1"
         android:layout_marginStart="31dp"
@@ -45,7 +45,7 @@
         android:layout_alignLeft="@+id/showbtn"
         android:ems="10"
         android:inputType="text"
-        android:text="enter_seat"
+        android:text="3"
         tools:layout_constraintTop_creator="1"
         android:layout_marginStart="31dp"
         android:layout_marginTop="273dp"

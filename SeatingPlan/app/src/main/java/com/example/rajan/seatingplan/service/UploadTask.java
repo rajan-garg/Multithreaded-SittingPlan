@@ -1,14 +1,17 @@
-package com.example.rajan.seatingplan;
+package com.example.rajan.seatingplan.service;
 
 import android.os.AsyncTask;
+
+import com.example.rajan.seatingplan.Config;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by root on 7/9/17.
+ * Created by root on 11/9/17.
  */
+
 
 public class UploadTask extends AsyncTask<Object, Object, Boolean> {
 
@@ -20,13 +23,15 @@ public class UploadTask extends AsyncTask<Object, Object, Boolean> {
     }
 
     protected Boolean doInBackground(Object... urls) {
-        Socket sock;
+
         try {
-            sock = new Socket(Config.IP_ADDR, 8000);
+            Socket sock = new Socket(Config.SERVER_IP_ADDRESS, 8000);
             DataOutputStream dOut = new DataOutputStream(sock.getOutputStream());
             dOut.writeByte(1);
             dOut.writeUTF(roll +" " + seat + "\n");
-            dOut.flush(); // Send off the data
+
+            // upload
+            dOut.flush();
             dOut.close();
             sock.close();
         } catch (IOException e) {
