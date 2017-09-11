@@ -7,33 +7,43 @@ import java.net.*;
 
 public class FileServer {
 
+
   public static void main(String[] args) throws IOException { 
 
-        ServerSocket servsock = new ServerSocket(8000);
+        ServerSocket servsock = new ServerSocket(Config.listenPort);
 
-        Locks.context = 1;
+        initLocks();
 
-        File f1 = new File("/home/abhinavp/Desktop/Multithreaded-SittingPlan/incomingdata.txt");
+        File file = new File(Config.infoFilePath);
         
         while (true) {
+          
           System.out.println("Waiting...");
 
           Socket sock = servsock.accept();
+
           System.out.println("Accepted connection : " + sock);
+          
           DataInputStream dIn = new DataInputStream(sock.getInputStream());
+          
           byte messageType = dIn.readByte();
 
-
           if( messageType==1) {
-            Teacher teacher = new Teacher(sock, dIn, 0, f1);
+            Client teacher = new Client(sock, dIn, 0, file);
             teacher.start();
           }
           else {
-            Teacher teacher = new Teacher(sock, dIn, 1, f1);
+            Client teacher = new Client(sock, dIn, 1, file);
             teacher.start();
           }
 
         }
+      }
+
+      public static void initLocks() {
+        Locks.lock = new Object();
+        Locks.isTeacherActive = 0;
+        Locks.isStudentActive = 0;
       }
 
     }
