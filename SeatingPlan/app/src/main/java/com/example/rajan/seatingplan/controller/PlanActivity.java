@@ -16,10 +16,17 @@ import com.example.rajan.seatingplan.model.Student;
 
 import java.util.ArrayList;
 
+/**
+ * Client activity for teacher that gets data from server and shows layout
+ */
 public class PlanActivity extends AppCompatActivity implements CallbackInterface {
 
     private GridViewAdapter gridViewAdapter;
 
+    /**
+     * called when activity is created
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,10 @@ public class PlanActivity extends AppCompatActivity implements CallbackInterface
 
      }
 
+    /**
+     * called when some data is updated
+     * @param students
+     */
     @Override
     public void onDataUpdate(final ArrayList<Student> students) {
         runOnUiThread(new Runnable() {

@@ -20,6 +20,10 @@ public class AsyncAttributesBuilder extends Thread {
         return student;
     }
 
+    /**
+     *
+     * @param student current student
+     */
     public void setStudent(Student student) {
         this.student = student;
     }

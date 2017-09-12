@@ -5,7 +5,7 @@ import com.example.rajan.seatingplan.model.Student;
 import java.util.ArrayList;
 
 /**
- * Created by root on 11/9/17.
+ * An interface to update UI in running activity from background thread
  */
 
 public interface CallbackInterface {

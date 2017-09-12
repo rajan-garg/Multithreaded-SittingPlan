@@ -8,7 +8,7 @@ import com.example.rajan.seatingplan.Utils;
 import java.io.FileNotFoundException;
 
 /**
- * Created by root on 12/9/17.
+ * A thread class to compress the image
  */
 
 public class CompressImage extends Thread{
@@ -19,6 +19,9 @@ public class CompressImage extends Thread{
         this.fileName = fileName;
     }
 
+    /**
+     * this method will asynchronously and compresses the image to 50*50
+     */
     @Override
     public void run() {
         Bitmap bitmap;

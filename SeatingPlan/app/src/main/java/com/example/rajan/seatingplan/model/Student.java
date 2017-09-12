@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 /**
- * Created by root on 7/9/17.
+ * A model for student containing roll, seat , image of student
  */
 
 public class Student {
@@ -12,17 +12,32 @@ public class Student {
     private String seat;
     private Bitmap imageBitmap;
 
+    /**
+     * Constructor of student with two parameters
+     * @param roll
+     * @param seat
+     */
     public Student(String roll, String seat) {
         this.roll = roll;
         this.seat = seat;
     }
 
+    /**
+     * Constructor of student with two parameters
+     * @param roll
+     * @param seat
+     * @param imageBitmap
+     */
     public Student(String roll, String seat, Bitmap imageBitmap) {
         this.roll = roll;
         this.seat = seat;
         this.imageBitmap = imageBitmap;
     }
 
+    /**
+     *
+     * @return roll number
+     */
     public String getRoll() {
         return roll;
     }

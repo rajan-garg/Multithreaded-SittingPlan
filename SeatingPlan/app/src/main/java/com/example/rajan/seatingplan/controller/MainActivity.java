@@ -11,6 +11,9 @@ import com.example.rajan.seatingplan.Config;
 import com.example.rajan.seatingplan.R;
 import com.example.rajan.seatingplan.service.UploadTask;
 
+/**
+ *  Main class which shows the input for roll and seat and buttons to send and show seats
+ */
 public class MainActivity extends AppCompatActivity {
 
     private EditText roll_et;
@@ -19,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText server_address_et;
     private String roll, seat;
 
+    /**
+     * method called when activity is created
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

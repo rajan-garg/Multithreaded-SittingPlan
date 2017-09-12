@@ -19,6 +19,11 @@ import java.util.Random;
 
 public class Utils {
 
+    /**
+     * checks if device is online
+     * @param context
+     * @return
+     */
     public static boolean isOnline(Context context) {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -27,6 +32,13 @@ public class Utils {
                 cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
+    /**
+     * calculate in sample size
+     * @param options
+     * @param reqWidth
+     * @param reqHeight
+     * @return
+     */
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;
         final int width = options.outWidth;
@@ -43,6 +55,14 @@ public class Utils {
         return inSampleSize;
     }
 
+    /**
+     * compresses bitmap
+     * @param path
+     * @param reqWidth
+     * @param reqHeight
+     * @return
+     * @throws FileNotFoundException
+     */
     public static Bitmap decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight) throws FileNotFoundException {
         File f = new File(path);
 
@@ -56,6 +76,12 @@ public class Utils {
         return BitmapFactory.decodeStream(new FileInputStream(f), null, options);
     }
 
+    /**
+     * save image in phone memory
+     * @param finalBitmap
+     * @param dirPath
+     * @param fileName
+     */
     public static void saveImage(Bitmap finalBitmap, String dirPath, String fileName) {
         File myDir = new File(dirPath);
         myDir.mkdirs();
@@ -84,6 +110,11 @@ public class Utils {
         return MyFiles;
     }
 
+    /**
+     * checks if str is integer
+     * @param str
+     * @return
+     */
     public static boolean isInteger(String str) {
         try {
             Integer i = Integer.parseInt(str);
