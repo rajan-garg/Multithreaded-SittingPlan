@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.*;
 
 /**
- * 
+ * Main Server class which listens on a port for client requests
  */
 public class FileServer {
 
@@ -48,7 +48,7 @@ public class FileServer {
     }
 
     /**
-     * 
+     *  Initialize lock flags
      */
     public static void initLocks() {
         Locks.lock = new Object();

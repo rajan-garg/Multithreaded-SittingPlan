@@ -8,7 +8,7 @@ import java.nio.file.*;
 import java.nio.charset.Charset;
 
 /**
- *
+ * A thread class to handle the client requests from teacher and students
  */
 public class Client extends Thread {
 
@@ -19,10 +19,10 @@ public class Client extends Thread {
 
     /**
      *
-     * @param socket
-     * @param dIn
-     * @param flag
-     * @param file
+     * @param socket client socket connected to the server.
+     * @param dIn input datastream for the connected client socket
+     * @param flag to find the type of client
+     * @param file database file
      */
     public Client(Socket socket, DataInputStream dIn, Integer flag, File file) {
         this.socket = socket;
@@ -33,7 +33,7 @@ public class Client extends Thread {
     }
 
     /**
-     *
+     * Default run method for thread class which calls method based on client type
      */
     @Override
     public void run() {
@@ -46,7 +46,7 @@ public class Client extends Thread {
 
     /**
      *
-     * @return
+     * @return boolean value true
      * @throws IOException
      */
     private boolean runTeacher() throws IOException {
@@ -120,7 +120,7 @@ public class Client extends Thread {
 
     /**
      *
-     * @return
+     * @return boolean value true
      * @throws IOException
      */
     private boolean runStudent()  throws IOException {

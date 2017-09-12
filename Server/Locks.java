@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.*;
 
 /**
- * 
+ * Lock class that create a global lock on file
  */
 public class Locks {
 
