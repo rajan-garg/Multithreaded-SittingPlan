@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.rajan.seatingplan.service.DownloadTask;
 import com.example.rajan.seatingplan.adapter.GridViewAdapter;
@@ -46,17 +47,14 @@ public class PlanActivity extends AppCompatActivity implements CallbackInterface
 
     @Override
     public void onDataUpdate(final ArrayList<Student> students) {
-        if (Config.IMPLEMENTATION == 3) {
-            // TODO Implement fork join framework
-        }
-        else {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    gridViewAdapter.clearStudents();
-                    gridViewAdapter.setStudents(students);
-                }
-            });
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                gridViewAdapter.clearStudents();
+                gridViewAdapter.setStudents(students);
+                long timeDur = System.nanoTime() - Config.startTime;
+                Log.e("Time Taken", String.valueOf(timeDur));
+            }
+        });
     }
 }

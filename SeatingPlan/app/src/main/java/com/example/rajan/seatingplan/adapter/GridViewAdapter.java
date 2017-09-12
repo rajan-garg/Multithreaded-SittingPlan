@@ -40,39 +40,15 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
         final Student student = students.get(position);
-
-        switch (Config.IMPLEMENTATION) {
-            case 1:
-                holder.roll_tv.setText(student.getRoll());
-                holder.seat_tv.setText(student.getSeat());
-                holder.imageView.setImageBitmap(student.getImageBitmap());
-                break;
-            case 2:
-                // background thread
-                Thread thread = new Thread(){
-                    public void run(){
-                        // UI thread
-                        ((Activity) context).runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                holder.roll_tv.setText(student.getRoll());
-                                holder.seat_tv.setText(student.getSeat());
-                                holder.imageView.setImageBitmap(student.getImageBitmap());
-                            }
-                        });
-                    }
-                };
-                thread.start();
-                break;
-            case 3:
-                break;
-        }
+        holder.roll_tv.setText("Roll: " + student.getRoll());
+        holder.seat_tv.setText("Seat: " + student.getSeat());
+        holder.imageView.setImageBitmap(student.getImageBitmap());
 
     }
 
     public void setStudents(ArrayList<Student> students) {
-        for(Student student:students)
-            Log.e("AdapterChanged(). r, s", student.getRoll() + ", " + student.getSeat());
+//        for(Student student:students)
+//            Log.e("AdapterChanged(). r, s", student.getRoll() + ", " + student.getSeat());
         this.students = students;
         notifyDataSetChanged();
     }
