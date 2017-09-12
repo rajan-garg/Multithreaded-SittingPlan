@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ForkJoinPool;
 
 /**
- * Created by root on 11/9/17.
+ * A thread class who listens asynchronously for client requests
  */
 
 public class ServerListener implements Runnable {
@@ -38,6 +38,13 @@ public class ServerListener implements Runnable {
     private Context context;
     private GridViewAdapter gridViewAdapter;
 
+    /**
+     *
+     * @param sock client socket
+     * @param callbackInterface to update UI in running activity from background thread
+     * @param context current activity
+     * @param gridViewAdapter the layout generated in this grid format
+     */
     public ServerListener(Socket sock, CallbackInterface callbackInterface, Context context, GridViewAdapter gridViewAdapter) {
         this.sock = sock;
         this.callbackInterface = callbackInterface;
@@ -45,6 +52,9 @@ public class ServerListener implements Runnable {
         this.gridViewAdapter = gridViewAdapter;
     }
 
+    /**
+     * run method to do layout generation according to one of 3 methods
+     */
     @Override
     public void run() {
 
@@ -65,6 +75,9 @@ public class ServerListener implements Runnable {
         }
     }
 
+    /**
+     * Layout generation without using thread(s).
+     */
     private void computeSync() {
         try {
             BufferedInputStream bis = new BufferedInputStream(sock.getInputStream());
@@ -118,6 +131,9 @@ public class ServerListener implements Runnable {
         }
     }
 
+    /**
+     * Layout generation with thread(s) but without using the fork-join framework.
+     */
     private void computeAsync() {
         try {
             BufferedInputStream bis = new BufferedInputStream(sock.getInputStream());
@@ -192,6 +208,9 @@ public class ServerListener implements Runnable {
         }
     }
 
+    /**
+     * Layout generation with thread(s) and using the fork-join framework.
+     */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void computeAsyncForkJoin() {
         try {

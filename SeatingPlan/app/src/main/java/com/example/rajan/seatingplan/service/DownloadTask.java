@@ -13,9 +13,8 @@ import java.io.File;
 import java.net.Socket;
 
 /**
- * Created by root on 7/9/17.
+ * A thread class for teacher client to get data from server
  */
-
 public class DownloadTask extends AsyncTask<Object, Object, Boolean> {
 
     private CallbackInterface callbackInterface;
@@ -23,18 +22,33 @@ public class DownloadTask extends AsyncTask<Object, Object, Boolean> {
     private GridViewAdapter gridViewAdapter;
     private Thread thread;
 
+    /**
+     *
+     * @param gridViewAdapter the layout generated in this grid format
+     * @param callbackInterface to update UI in running activity from background thread
+     * @param context current activity
+     */
     public DownloadTask(GridViewAdapter gridViewAdapter, CallbackInterface callbackInterface, Context context) {
         this.gridViewAdapter = gridViewAdapter;
         this.callbackInterface = callbackInterface;
         this.context = context;
     }
 
+    /**
+     *
+     * @param aBoolean
+     */
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
         Log.e("DownloadTask", "onPostExecute()");
     }
 
+    /**
+     *
+     * @param urls default object
+     * @return
+     */
     protected Boolean doInBackground(Object... urls) {
 
         Log.e("DownloadTask", "doInBackground()");

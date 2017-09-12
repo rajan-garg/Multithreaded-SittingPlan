@@ -9,19 +9,27 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by root on 11/9/17.
+ * A thread class for student client to upload data on server
  */
-
-
 public class UploadTask extends AsyncTask<Object, Object, Boolean> {
 
     private String roll, seat;
 
+    /**
+     *
+     * @param roll the roll number of student
+     * @param seat the seat number of student
+     */
     public UploadTask(String roll, String seat) {
         this.roll = roll;
         this.seat = seat;
     }
 
+    /**
+     * 
+     * @param urls default object
+     * @return
+     */
     protected Boolean doInBackground(Object... urls) {
 
         try {
